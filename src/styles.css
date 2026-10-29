@@ -1,0 +1,834 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system — módulo Gestão (Companium).
+ * Tema navy escuro com marca verde, superfícies neumórficas (.neu-*).
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-label: var(--chart-label);
+  --color-chart-axis: var(--chart-axis);
+  --color-chart-legend: var(--chart-legend);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.217 0.036 254.2);
+  --foreground: oklch(0.969 0.002 247.8);
+  --card: oklch(0.249 0.039 254.1);
+  --card-foreground: oklch(0.969 0.002 247.8);
+  --popover: oklch(0.269 0.044 254.1);
+  --popover-foreground: oklch(0.969 0.002 247.8);
+  --primary: oklch(0.731 0.153 160.7);
+  --primary-foreground: oklch(0.185 0.032 254);
+  --secondary: oklch(0.308 0.047 254.1);
+  --secondary-foreground: oklch(0.969 0.002 247.8);
+  --muted: oklch(0.289 0.043 254);
+  --muted-foreground: oklch(0.741 0.023 253.4);
+  --accent: oklch(0.327 0.054 254.1);
+  --accent-foreground: oklch(0.969 0.002 247.8);
+  --destructive: oklch(0.618 0.198 25.1);
+  --destructive-foreground: oklch(1 0 89.9);
+  --border: oklch(0.347 0.052 254);
+  --input: oklch(0.308 0.047 254.1);
+  --ring: oklch(0.731 0.153 160.7);
+  --chart-line-primary: oklch(0.731 0.153 160.7);
+  --chart-line-forecast: oklch(0.737 0.124 232.2);
+  --chart-line-pace: oklch(0.809 0.15 76.6);
+  --chart-1: oklch(0.731 0.153 160.7);
+  --chart-2: oklch(0.737 0.124 232.2);
+  --chart-3: oklch(0.809 0.15 76.6);
+  --chart-4: oklch(0.665 0.168 313.4);
+  --chart-5: oklch(0.618 0.198 25.1);
+  /* Hierarquia de textos cinzas dos gráficos (sobre fundo escuro) */
+  --chart-label: var(--foreground);
+  --chart-axis: oklch(0.85 0.015 253);
+  --chart-legend: oklch(0.8 0.02 253.4);
+  --sidebar: oklch(0.185 0.03 254.1);
+  --sidebar-foreground: oklch(0.969 0.002 247.8);
+  --sidebar-primary: oklch(0.731 0.153 160.7);
+  --sidebar-primary-foreground: oklch(0.185 0.032 254);
+  --sidebar-accent: oklch(0.327 0.054 254.1);
+  --sidebar-accent-foreground: oklch(0.969 0.002 247.8);
+  --sidebar-border: oklch(0.347 0.052 254);
+  --sidebar-ring: oklch(0.731 0.153 160.7);
+
+  /* Sombras neumórficas */
+  --neu-dark: hsl(213 60% 3% / 0.75);
+  --neu-light: hsl(213 40% 26% / 0.45);
+  --neu-brand: hsl(156 64% 47%);
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--background);
+  }
+
+  html::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  html::-webkit-scrollbar-track {
+    background: var(--background);
+    border-radius: 10px;
+  }
+
+  html::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      180deg,
+      var(--primary) 0%,
+      oklch(0.62 0.14 160.7) 100%
+    );
+    border-radius: 10px;
+    border: 2px solid var(--background);
+    box-shadow:
+      inset 0 1px 0 hsl(156 60% 60% / 0.35),
+      inset 0 -1px 0 hsl(156 70% 20% / 0.35);
+  }
+
+  html::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      180deg,
+      oklch(0.79 0.13 160.7) 0%,
+      var(--primary) 100%
+    );
+  }
+
+  html::-webkit-scrollbar-corner {
+    background: var(--background);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+/* ===== Superfícies neumórficas ===== */
+
+.neu-card {
+  background: hsl(213 45% 14%);
+  border: none;
+  border-radius: 16px;
+  box-shadow:
+    6px 6px 14px 0 hsl(213 55% 6% / 0.7),
+    -6px -6px 14px 0 hsl(213 40% 22% / 0.4),
+    inset 0 1px 0 hsl(213 35% 24% / 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.neu-card:hover {
+  box-shadow:
+    4px 4px 10px 0 hsl(213 55% 6% / 0.6),
+    -4px -4px 10px 0 hsl(213 40% 22% / 0.35),
+    inset 0 1px 0 hsl(213 35% 24% / 0.3);
+}
+
+.neu-inset {
+  background: hsl(213 50% 12%);
+  border: none;
+  border-radius: 12px;
+  box-shadow:
+    inset 4px 4px 8px 0 hsl(213 55% 6% / 0.6),
+    inset -4px -4px 8px 0 hsl(213 40% 20% / 0.3);
+}
+
+/* ===== Ícone neumórfico dentro de cards ===== */
+.neu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background: linear-gradient(145deg, hsl(213 45% 19%), hsl(213 48% 14%));
+  box-shadow:
+    4px 4px 8px 0 hsl(213 55% 6% / 0.7),
+    -3px -3px 8px 0 hsl(213 40% 22% / 0.4),
+    inset 0 1px 0 hsl(213 40% 24% / 0.3);
+}
+
+/* ===== Tooltip neumórfico (realçado, para fora) ===== */
+.neu-raised {
+  background: linear-gradient(145deg, hsl(213 46% 19%), hsl(213 49% 14%));
+  border: 1px solid hsl(213 40% 26% / 0.55);
+  box-shadow:
+    4px 4px 10px 0 hsl(213 55% 6% / 0.6),
+    -3px -3px 10px 0 hsl(213 40% 24% / 0.3),
+    inset 0 1px 0 hsl(213 40% 26% / 0.35);
+}
+
+.neu-tooltip {
+  position: absolute;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+  max-width: 220px;
+  padding: 0.5rem 0.625rem;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  line-height: 1.35;
+  color: var(--foreground);
+  background: linear-gradient(145deg, hsl(213 46% 19%), hsl(213 49% 14%));
+  border: 1px solid hsl(213 40% 26% / 0.55);
+  box-shadow:
+    4px 4px 10px 0 hsl(213 55% 6% / 0.6),
+    -3px -3px 10px 0 hsl(213 40% 24% / 0.3),
+    inset 0 1px 0 hsl(213 40% 26% / 0.35);
+}
+
+.neu-tooltip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  border-top: 1px solid hsl(156 64% 47% / 0.45);
+  pointer-events: none;
+}
+
+.group:hover .neu-tooltip,
+.neu-tooltip-trigger:hover .neu-tooltip,
+.neu-tooltip-trigger:focus-visible .neu-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+
+
+.neu-dialog {
+  border-radius: 20px;
+  background: linear-gradient(145deg, hsl(213 45% 16%), hsl(213 48% 12%));
+  border: 1px solid hsl(213 40% 28% / 0.6);
+  box-shadow:
+    0 30px 60px -20px hsl(213 65% 2% / 0.85),
+    12px 12px 28px 0 hsl(213 60% 3% / 0.7),
+    -10px -10px 24px 0 hsl(213 40% 24% / 0.35),
+    inset 0 1px 0 hsl(213 40% 36% / 0.7),
+    inset 0 -1px 0 hsl(213 60% 5% / 0.5),
+    0 0 0 1px hsl(156 64% 47% / 0.12);
+}
+
+/* ===== Botões ===== */
+
+.neu-button,
+.neu-button:hover,
+.neu-button:focus,
+.neu-button:active {
+  color: hsl(210 14% 96%) !important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.neu-button {
+  background: linear-gradient(145deg, hsl(213 45% 19%), hsl(213 48% 14%));
+  border: 1px solid hsl(213 40% 26% / 0.6);
+  border-radius: 12px;
+  box-shadow:
+    6px 6px 14px 0 hsl(213 60% 3% / 0.85),
+    -5px -5px 12px 0 hsl(213 40% 26% / 0.5),
+    inset 0 1px 0 hsl(213 40% 32% / 0.7),
+    inset 0 -1px 0 hsl(213 60% 5% / 0.5);
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    filter 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.neu-button:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(145deg, hsl(213 45% 22%), hsl(213 48% 17%));
+  border-color: hsl(156 64% 47% / 0.55);
+  box-shadow:
+    7px 7px 18px 0 hsl(213 60% 3% / 0.9),
+    -6px -6px 14px 0 hsl(213 40% 30% / 0.6),
+    inset 0 1px 0 hsl(213 40% 36% / 0.8),
+    0 0 0 1px hsl(156 64% 47% / 0.35);
+}
+
+.neu-button:active {
+  transform: translateY(1px);
+  background: linear-gradient(145deg, hsl(213 48% 14%), hsl(213 45% 18%));
+  box-shadow:
+    inset 4px 4px 8px 0 hsl(213 60% 3% / 0.7),
+    inset -3px -3px 6px 0 hsl(213 40% 26% / 0.4);
+}
+
+/* Botão primário — verde da marca */
+.neu-button-primary,
+.neu-button-primary:hover,
+.neu-button-primary:focus,
+.neu-button-primary:active {
+  background: linear-gradient(145deg, hsl(156 64% 52%), hsl(156 64% 42%));
+  color: hsl(213 60% 8%) !important;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.neu-button-primary {
+  border: none;
+  border-radius: 12px;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    filter 0.2s ease;
+  box-shadow:
+    6px 6px 16px 0 hsl(213 60% 3% / 0.85),
+    -5px -5px 14px 0 hsl(156 64% 47% / 0.25),
+    inset 0 1px 0 hsl(156 80% 80% / 0.65),
+    inset 0 -2px 0 hsl(156 80% 22% / 0.5),
+    0 0 0 1px hsl(156 64% 40% / 0.5);
+}
+
+.neu-button-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+  box-shadow:
+    8px 8px 20px 0 hsl(213 60% 3% / 0.9),
+    -6px -6px 16px 0 hsl(156 64% 47% / 0.35),
+    inset 0 1px 0 hsl(156 80% 80% / 0.7),
+    0 0 0 1px hsl(156 64% 47% / 0.6);
+}
+
+.neu-button-primary:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 4px 4px 8px 0 hsl(213 60% 3% / 0.5),
+    inset -3px -3px 6px 0 hsl(156 80% 30% / 0.4),
+    0 0 0 1px hsl(156 64% 40% / 0.5);
+}
+
+/* Botão de perigo */
+.neu-button-danger,
+.neu-button-danger:hover,
+.neu-button-danger:focus,
+.neu-button-danger:active {
+  background: linear-gradient(145deg, hsl(0 75% 58%), hsl(0 70% 45%));
+  color: hsl(0 0% 100%) !important;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.neu-button-danger {
+  border: none;
+  border-radius: 12px;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    filter 0.2s ease;
+  box-shadow:
+    6px 6px 16px 0 hsl(213 60% 3% / 0.85),
+    -5px -5px 14px 0 hsl(0 70% 50% / 0.25),
+    inset 0 1px 0 hsl(0 90% 85% / 0.6),
+    inset 0 -2px 0 hsl(0 80% 22% / 0.5),
+    0 0 0 1px hsl(0 70% 40% / 0.5);
+}
+
+.neu-button-danger:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+  box-shadow:
+    8px 8px 20px 0 hsl(213 60% 3% / 0.9),
+    -6px -6px 16px 0 hsl(0 70% 50% / 0.4),
+    inset 0 1px 0 hsl(0 90% 85% / 0.7),
+    0 0 0 1px hsl(0 70% 50% / 0.6);
+}
+
+.neu-button-danger:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 4px 4px 8px 0 hsl(213 60% 3% / 0.5),
+    inset -3px -3px 6px 0 hsl(0 80% 30% / 0.4),
+    0 0 0 1px hsl(0 70% 40% / 0.5);
+}
+
+/* ===== Sidebar ===== */
+
+.neu-sidebar {
+  background: hsl(213 55% 8%);
+  box-shadow:
+    6px 0 16px 0 hsl(213 55% 4% / 0.5),
+    inset -1px 0 0 hsl(213 35% 16% / 0.3);
+}
+
+.neu-sidebar-item {
+  border-radius: 10px;
+  transition:
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.neu-sidebar-item:hover:not(.is-active) {
+  box-shadow:
+    3px 3px 6px 0 hsl(213 60% 4% / 0.45),
+    -2px -2px 6px 0 hsl(213 35% 18% / 0.25);
+}
+
+.neu-sidebar-item.is-active {
+  background: hsl(213 55% 9%) !important;
+  box-shadow:
+    inset 3px 3px 6px 0 hsl(213 65% 4% / 0.7),
+    inset -2px -2px 5px 0 hsl(213 35% 18% / 0.35),
+    inset 0 0 0 1px hsl(156 64% 47% / 0.25);
+}
+
+.neu-sidebar-subitem {
+  border-radius: 8px;
+  transition:
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.neu-sidebar-subitem.is-active {
+  background: hsl(213 55% 9%) !important;
+  box-shadow:
+    inset 2px 2px 4px 0 hsl(213 65% 4% / 0.6),
+    inset -1px -1px 3px 0 hsl(213 35% 18% / 0.3),
+    inset 2px 0 0 hsl(156 64% 47% / 0.9);
+}
+
+/* ===== Abas ===== */
+
+.neu-tab {
+  position: relative;
+  border-radius: 10px;
+  padding: 0.4rem 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--muted-foreground);
+  background: transparent;
+  transition:
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.neu-tab:hover:not([data-state="active"]) {
+  color: var(--foreground);
+}
+
+.neu-tab[data-state="active"] {
+  background: linear-gradient(145deg, hsl(213 45% 19%), hsl(213 48% 14%));
+  color: hsl(210 14% 96%);
+  box-shadow:
+    4px 4px 10px 0 hsl(213 60% 3% / 0.8),
+    -4px -4px 10px 0 hsl(213 40% 26% / 0.45),
+    inset 0 1px 0 hsl(213 40% 32% / 0.7),
+    0 0 0 1px hsl(156 64% 47% / 0.45);
+}
+
+/* ===== Chip ===== */
+
+.neu-chip {
+  display: inline-block;
+  border-radius: 8px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: var(--background);
+  transition: box-shadow 0.2s ease;
+  box-shadow:
+    inset 2px 2px 5px 0 hsl(213 60% 5% / 0.55),
+    inset -2px -2px 5px 0 hsl(213 38% 20% / 0.3),
+    inset 0 0 0 1px hsl(156 64% 47% / 0.18);
+}
+
+/* ===== Selects / Comboboxes ===== */
+
+.neu-select-trigger {
+  position: relative;
+  background: hsl(213 48% 11%);
+  border: none;
+  border-radius: 12px;
+  box-shadow:
+    inset 2px 2px 5px 0 hsl(213 60% 5% / 0.45),
+    inset -1px -1px 4px 0 hsl(213 40% 20% / 0.25),
+    inset 0 0 0 1px hsl(213 40% 22% / 0.35);
+  transition:
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.neu-select-trigger:hover {
+  background: hsl(213 48% 12.5%);
+  box-shadow:
+    inset 2px 2px 5px 0 hsl(213 60% 5% / 0.4),
+    inset -1px -1px 4px 0 hsl(213 40% 22% / 0.3),
+    inset 0 0 0 1px hsl(213 40% 26% / 0.45);
+}
+
+.neu-select-trigger:active,
+.neu-select-trigger[data-state="open"] {
+  background: hsl(213 48% 10.5%);
+  box-shadow:
+    inset 3px 3px 6px 0 hsl(213 60% 5% / 0.55),
+    inset -2px -2px 5px 0 hsl(213 40% 18% / 0.25),
+    inset 0 0 0 1px hsl(213 40% 22% / 0.35);
+}
+
+.neu-select-content {
+  background: linear-gradient(145deg, hsl(213 45% 16%), hsl(213 48% 12%));
+  border: 1px solid hsl(213 40% 28% / 0.6);
+  border-radius: 14px;
+  box-shadow:
+    0 24px 50px -12px hsl(213 65% 2% / 0.85),
+    8px 8px 18px 0 hsl(213 60% 3% / 0.7),
+    -6px -6px 14px 0 hsl(213 40% 24% / 0.35),
+    inset 0 1px 0 hsl(213 40% 36% / 0.7),
+    0 0 0 1px hsl(156 64% 47% / 0.12);
+  overflow: hidden;
+}
+
+.neu-select-item {
+  position: relative;
+  border-radius: 8px;
+  margin: 0 0.25rem;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.8rem;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.neu-select-item:hover {
+  background: linear-gradient(145deg, hsl(213 45% 19%), hsl(213 48% 15%));
+  color: hsl(156 70% 62%);
+  box-shadow:
+    inset 2px 2px 4px 0 hsl(213 60% 5% / 0.45),
+    inset -2px -2px 4px 0 hsl(213 40% 22% / 0.25),
+    inset 0 0 0 1px hsl(156 64% 47% / 0.2);
+}
+
+.neu-select-item[data-selected="true"] {
+  background: linear-gradient(145deg, hsl(156 64% 22% / 0.55), hsl(156 64% 16% / 0.55));
+  color: hsl(156 70% 62%);
+  box-shadow:
+    inset 2px 2px 4px 0 hsl(213 60% 5% / 0.45),
+    inset -2px -2px 4px 0 hsl(213 40% 22% / 0.25),
+    inset 0 0 0 1px hsl(156 64% 47% / 0.45);
+}
+
+.neu-select-item[data-selected="true"] svg {
+  color: hsl(156 70% 62%);
+}
+
+.neu-select-search {
+  border-bottom: 1px solid hsl(213 40% 28% / 0.5);
+}
+
+.neu-select-search input {
+  color: var(--foreground);
+}
+
+.neu-select-search input::placeholder {
+  color: var(--muted-foreground);
+}
+
+.neu-select-search svg {
+  color: var(--muted-foreground);
+}
+
+/* ===== Badges de status ===== */
+
+.neu-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 9999px;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+  background: hsl(213 40% 16%);
+  color: hsl(213 15% 70%);
+  box-shadow:
+    3px 3px 6px 0 hsl(213 60% 5% / 0.65),
+    -2px -2px 5px 0 hsl(213 38% 24% / 0.35),
+    inset 0 0 0 1px hsl(213 35% 28% / 0.5);
+}
+
+.neu-badge.active {
+  background: linear-gradient(145deg, hsl(156 64% 22% / 0.55), hsl(156 64% 16% / 0.55));
+  color: hsl(156 70% 62%);
+  box-shadow:
+    3px 3px 6px 0 hsl(213 60% 5% / 0.65),
+    -2px -2px 5px 0 hsl(213 38% 24% / 0.35),
+    inset 0 0 0 1px hsl(156 64% 47% / 0.45);
+}
+
+.neu-badge::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.85;
+}
+
+/* ===== Scrollbar neumórfica ===== */
+
+.neu-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--background);
+}
+
+.neu-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+
+.neu-scroll::-webkit-scrollbar-track {
+  background: var(--background);
+  border-radius: 10px;
+}
+
+.neu-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--primary) 0%,
+    oklch(0.62 0.14 160.7) 100%
+  );
+  border-radius: 10px;
+  border: 2px solid var(--background);
+  box-shadow:
+    inset 0 1px 0 hsl(156 60% 60% / 0.35),
+    inset 0 -1px 0 hsl(156 70% 20% / 0.35);
+}
+
+.neu-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    oklch(0.79 0.13 160.7) 0%,
+    var(--primary) 100%
+  );
+}
+
+.neu-scroll::-webkit-scrollbar-corner {
+  background: var(--background);
+}
+
+/* ===== Scrollbar para tabela de Insights Clientes ===== */
+
+.insights-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--background);
+}
+
+.insights-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+
+.insights-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.insights-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--primary) 0%,
+    oklch(0.62 0.14 160.7) 100%
+  );
+  border-radius: 10px;
+  border: 2px solid var(--background);
+  box-shadow:
+    inset 0 1px 0 hsl(156 60% 60% / 0.35),
+    inset 0 -1px 0 hsl(156 70% 20% / 0.35);
+}
+
+.insights-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    oklch(0.79 0.13 160.7) 0%,
+    var(--primary) 100%
+  );
+}
+
+/* ===== Skeleton ===== */
+
+.skeleton-loading {
+  background: linear-gradient(
+    90deg,
+    hsl(213 40% 18%) 25%,
+    hsl(213 38% 24%) 50%,
+    hsl(213 40% 18%) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ===== Toasts neumórficos ===== */
+
+.neu-toast {
+  background: linear-gradient(145deg, hsl(213 45% 16%), hsl(213 48% 12%)) !important;
+  border: 1px solid hsl(213 40% 28% / 0.6) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 24px 50px -12px hsl(213 65% 2% / 0.85),
+    8px 8px 18px 0 hsl(213 60% 3% / 0.7),
+    -6px -6px 14px 0 hsl(213 40% 24% / 0.35),
+    inset 0 1px 0 hsl(213 40% 36% / 0.7),
+    0 0 0 1px hsl(156 64% 47% / 0.12) !important;
+}
+
+.neu-toast-success {
+  border-color: hsl(156 64% 47% / 0.55) !important;
+  box-shadow:
+    0 24px 50px -12px hsl(213 65% 2% / 0.85),
+    8px 8px 18px 0 hsl(213 60% 3% / 0.7),
+    -6px -6px 14px 0 hsl(213 40% 24% / 0.35),
+    inset 0 1px 0 hsl(213 40% 36% / 0.7),
+    0 0 0 1px hsl(156 64% 47% / 0.35) !important;
+}
+
+.neu-toast-success [data-title] {
+  color: hsl(156 70% 62%) !important;
+}
+
+.neu-toast-success [data-icon] {
+  color: hsl(156 70% 62%) !important;
+}
+
+.neu-toast-error {
+  border-color: hsl(0 70% 50% / 0.55) !important;
+  box-shadow:
+    0 24px 50px -12px hsl(213 65% 2% / 0.85),
+    8px 8px 18px 0 hsl(213 60% 3% / 0.7),
+    -6px -6px 14px 0 hsl(213 40% 24% / 0.35),
+    inset 0 1px 0 hsl(213 40% 36% / 0.7),
+    0 0 0 1px hsl(0 70% 50% / 0.35) !important;
+}
+
+.neu-toast-error [data-title] {
+  color: hsl(0 80% 65%) !important;
+}
+
+.neu-toast-error [data-icon] {
+  color: hsl(0 80% 65%) !important;
+}
+
+.neu-toast-action {
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.neu-toast-success .neu-toast-action {
+  background: linear-gradient(145deg, hsl(156 64% 52%), hsl(156 64% 42%)) !important;
+  color: hsl(213 60% 8%) !important;
+  box-shadow:
+    3px 3px 8px 0 hsl(213 60% 3% / 0.7),
+    -2px -2px 6px 0 hsl(156 64% 47% / 0.25),
+    inset 0 1px 0 hsl(156 80% 80% / 0.65),
+    inset 0 -1px 0 hsl(156 80% 22% / 0.5),
+    0 0 0 1px hsl(156 64% 40% / 0.5) !important;
+}
+
+.neu-toast-error .neu-toast-action {
+  background: linear-gradient(145deg, hsl(0 75% 58%), hsl(0 70% 45%)) !important;
+  color: hsl(0 0% 100%) !important;
+  box-shadow:
+    3px 3px 8px 0 hsl(213 60% 3% / 0.7),
+    -2px -2px 6px 0 hsl(0 70% 50% / 0.25),
+    inset 0 1px 0 hsl(0 90% 85% / 0.6),
+    inset 0 -1px 0 hsl(0 80% 22% / 0.5),
+    0 0 0 1px hsl(0 70% 40% / 0.5) !important;
+}
+
+.neu-toast-action:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+/* Foco em fatias/elementos clicáveis dos gráficos: some no clique, aparece só no teclado */
+.recharts-wrapper .recharts-sector:focus,
+.recharts-wrapper path:focus {
+  outline: none;
+}
+.recharts-wrapper .recharts-sector:focus-visible,
+.recharts-wrapper path:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
